@@ -1,48 +1,28 @@
-import java.util.Scanner;
-import java.util.TreeMap;
+//How to convert Integer to Roman String?
 
 public class IntegerToRoman {
     public static String intToRoman(int num) {
-        if (num <= 0 || num > 3999) {
-            return "Invalid number";
-        }
+        // Define arrays for Roman numeral symbols and their corresponding values
+        String[] romanSymbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
         
-        //to store the mappings of integers to Roman numerals
-        TreeMap<Integer, String> map = new TreeMap<>();
-        map.put(1000, "M");
-        map.put(900, "CM");
-        map.put(500, "D");
-        map.put(400, "CD");
-        map.put(100, "C");
-        map.put(90, "XC");
-        map.put(50, "L");
-        map.put(40, "XL");
-        map.put(10, "X");
-        map.put(9, "IX");
-        map.put(5, "V");
-        map.put(4, "IV");
-        map.put(1, "I");
+        StringBuilder result = new StringBuilder();
         
-        StringBuilder roman = new StringBuilder();
-        for (int key : map.descendingKeySet()) {
-            while (num >= key) {
-                roman.append(map.get(key));
-                num -= key;
+        // Iterate through the values
+        for (int i = 0; i < values.length; i++) {
+            // Repeat the current symbol while num is greater than or equal to its value
+            while (num >= values[i]) {
+                result.append(romanSymbols[i]);
+                num -= values[i];
             }
         }
         
-        return roman.toString();
+        return result.toString();
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        
-        System.out.print("Enter an integer: ");
-        int number = sc.nextInt();
-        
+        int number = 2024;
         String romanNumeral = intToRoman(number);
-        System.out.println("Roman numeral for " + number + " is: " + romanNumeral);
-        
-        sc.close();
+        System.out.println("Roman numeral representation of " + number + ": " + romanNumeral);
     }
 }
