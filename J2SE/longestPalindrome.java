@@ -10,7 +10,6 @@ class Solution {
         for (char c : s.toCharArray()) {
             charCount[c]++;
         }
-        
         int length = 0;
         boolean oddCountFound = false;
         
@@ -22,11 +21,9 @@ class Solution {
                 oddCountFound = true;
             }
         }
-        
         if (oddCountFound) {
             length += 1;
         }
-        
         return length;
     }
 }
