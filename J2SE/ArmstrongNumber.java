@@ -22,7 +22,6 @@ public class ArmstrongNumber {
 		arm=arm+mul;
 		t2=t2/10;
 		}
-		
 		if(no==arm) {
 			System.out.println(no+" is a Armstrong Number");
 		}else {
