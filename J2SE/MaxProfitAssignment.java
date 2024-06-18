@@ -55,7 +55,6 @@ class Solution {
         }
         return totalProfit;
     }
-    
     private int binarySearch(List<int[]> list, int target) {
         int left = 0, right = list.size() - 1;
         while (left <= right) {
