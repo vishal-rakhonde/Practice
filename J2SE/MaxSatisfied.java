@@ -13,8 +13,6 @@ The bookstore owner knows a secret technique to keep themselves not grumpy for m
 
 Return the maximum number of customers that can be satisfied throughout the day.
 
- 
-
 Example 1:
 
 Input: customers = [1,0,1,2,1,1,7,5], grumpy = [0,1,0,1,0,1,0,1], minutes = 3
@@ -34,3 +32,35 @@ n == customers.length == grumpy.length
 0 <= customers[i] <= 1000
 grumpy[i] is either 0 or 1.
 */
+
+class MaxSatisfied {
+    public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {
+        int n = customers.length;
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            if (grumpy[i] == 0) {
+                ans += customers[i];
+            }
+        }
+        
+        int unsatis = 0;
+        for (int i = 0; i < minutes; i++) {
+            if (grumpy[i] == 1) {
+                unsatis += customers[i];
+            }
+        }
+        
+        int max = unsatis;
+        for (int i = minutes; i < n; i++) {
+            if (grumpy[i - minutes] == 1) {
+                unsatis -= customers[i - minutes];
+            }
+            if (grumpy[i] == 1) {
+                unsatis += customers[i];
+            }
+            max = Math.max(max, unsatis);
+        }
+        
+        return ans + max;
+    }
+}
