@@ -25,3 +25,24 @@ Constraints:
 1 <= nums[i] <= 10^5
 1 <= k <= nums.length
 */
+class Solution {
+    private int numSubarraysLessThanOrEqualToGoal(int[] nums, int goal) {
+        int i = 0, j = 0, n = nums.length, count = 0, ans = 0;
+
+        while (j < n) {
+            if (nums[j] % 2 == 1) count++;
+            while (i <= j && count > goal) {
+                if (nums[i] % 2 == 1) count--;
+                i++;
+            }
+            ans += j - i + 1;
+            j++;
+        }
+        return ans;
+    }
+
+    public int numberOfSubarrays(int[] nums, int k) {
+        return numSubarraysLessThanOrEqualToGoal(nums, k) - 
+               numSubarraysLessThanOrEqualToGoal(nums, k - 1);
+    }
+}
