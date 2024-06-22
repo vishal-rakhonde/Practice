@@ -3,8 +3,6 @@ Given an array of integers nums and an integer k. A continuous subarray is calle
 
 Return the number of nice sub-arrays.
 
- 
-
 Example 1:
 
 Input: nums = [1,1,2,1,1], k = 3
