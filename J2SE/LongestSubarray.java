@@ -5,8 +5,6 @@ Companies
 Hint
 Given an array of integers nums and an integer limit, return the size of the longest non-empty subarray such that the absolute difference between any two elements of this subarray is less than or equal to limit.
 
- 
-
 Example 1:
 
 Input: nums = [8,2,4,7], limit = 4
@@ -31,11 +29,8 @@ Explanation: The subarray [2,4,7,2] is the longest since the maximum absolute di
 Example 3:
 
 Input: nums = [4,2,2,2,4,4,2,2], limit = 0
-Output: 3
- 
 
 Constraints:
-
 1 <= nums.length <= 105
 1 <= nums[i] <= 109
 0 <= limit <= 109
