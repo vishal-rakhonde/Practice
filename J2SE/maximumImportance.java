@@ -8,11 +8,7 @@ You need to assign each city with an integer value from 1 to n, where each value
 
 Return the maximum total importance of all roads possible after assigning the values optimally.
 
- 
-
 Example 1:
-
-
 Input: n = 5, roads = [[0,1],[1,2],[2,3],[0,2],[1,3],[2,4]]
 Output: 43
 Explanation: The figure above shows the country and the assigned values of [2,4,5,3,1].
