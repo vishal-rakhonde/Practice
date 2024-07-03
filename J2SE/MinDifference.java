@@ -1,8 +1,5 @@
 /* Minimum Difference Between Largest and Smallest Value in Three Moves
-Medium
-Topics
-Companies
-Hint
+
 You are given an integer array nums.
 
 In one move, you can choose one element of nums and change it to any value.
@@ -46,3 +43,36 @@ Constraints:
 1 <= nums.length <= 105
 -109 <= nums[i] <= 109
 */
+
+import java.util.Arrays;
+
+class MinDifference {
+    public int minDifference(int[] nums) {
+        int n = nums.length;
+        int res = Integer.MAX_VALUE;
+        
+        // If there are less than 5 elements, return 0
+        if (n < 5)
+            return 0;
+        
+        // Sort the array
+        Arrays.sort(nums);
+        
+        // Find the minimum difference between the largest 4 elements and the smallest 4 elements
+        for (int i = 0; i < 4; ++i) {
+            res = Math.min(res, nums[n - 4 + i] - nums[i]);
+        }
+        
+        return res;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Example usage:
+        int[] nums = {1, 5, 6, 14, 15, 18};
+        Solution solution = new Solution();
+        int minDiff = solution.minDifference(nums);
+        System.out.println("Minimum difference: " + minDiff);
+    }
+}
