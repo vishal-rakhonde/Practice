@@ -30,3 +30,60 @@ There are no two consecutive nodes with Node.val == 0.
 The beginning and end of the linked list have Node.val == 0
 */
 
+class MergeNodes {
+    public ListNode mergeNodes(ListNode head) {
+        // BASE CASE -> if we have a single zero, simply return null
+        if (head.next == null) return null;
+        
+        // fetch sum from current 0 to next 0
+        ListNode ptr = head.next;
+        int sum = 0;
+        while (ptr.val != 0) {
+            sum += ptr.val;
+            ptr = ptr.next;
+        }
+        
+        // assign sum on the first node between nodes having value 0
+        head.next.val = sum;
+        
+        // call and get the answer and connect the answer to next of head->next
+        head.next.next = mergeNodes(ptr);
+        
+        // return head->next..=> new head
+        return head.next;
+    }
+    
+    public static void main(String[] args) {
+        // Example usage or testing can be placed here
+        ListNode node1 = new ListNode(1);
+        ListNode node2 = new ListNode(2);
+        ListNode node3 = new ListNode(0);
+        ListNode node4 = new ListNode(3);
+        ListNode node5 = new ListNode(4);
+        
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = node5;
+        
+        Solution solution = new Solution();
+        ListNode result = solution.mergeNodes(node1);
+        
+        // Print the merged list or perform any other actions with the result
+        while (result != null) {
+            System.out.print(result.val + " ");
+            result = result.next;
+        }
+        System.out.println();
+    }
+}
+
+class ListNode {
+    int val;
+    ListNode next;
+    
+    ListNode(int val) {
+        this.val = val;
+    }
+}
+
