@@ -31,3 +31,80 @@ descriptions[i].length == 3
 0 <= isLefti <= 1
 The binary tree described by descriptions is valid.
 */
+
+import java.util.*;
+
+// Definition for a binary tree node
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+public class CreateBinaryTree {
+    public TreeNode createBinaryTree(int[][] descriptions) {
+        HashMap<Integer, TreeNode> map = new HashMap<>();
+        Set<Integer> children = new HashSet<>();
+        
+        // Build the tree using the descriptions
+        for (int[] arr : descriptions) {
+            int parent = arr[0], child = arr[1], isLeft = arr[2];
+            children.add(child);
+            TreeNode node = map.getOrDefault(parent, new TreeNode(parent));
+            if (isLeft == 1) {
+                node.left = map.getOrDefault(child, new TreeNode(child));
+                map.put(child, node.left);
+            } else {
+                node.right = map.getOrDefault(child, new TreeNode(child));
+                map.put(child, node.right);
+            }
+            map.put(parent, node);
+        }
+        
+        // Find the root node
+        int root = -1;
+        for (int[] arr : descriptions) {
+            if (!children.contains(arr[0])) {
+                root = arr[0];
+                break;
+            }
+        }
+        
+        // Return the root node
+        return map.getOrDefault(root, null);
+    }
+    
+    public static void main(String[] args) {
+        CreateBinaryTree treeCreator = new CreateBinaryTree();
+        
+        // Example usage
+        int[][] descriptions = {
+            {1, 2, 1}, // parent=1, child=2, left child
+            {1, 3, 0}, // parent=1, child=3, right child
+            {2, 4, 1}, // parent=2, child=4, left child
+            {2, 5, 0}  // parent=2, child=5, right child
+        };
+        
+        TreeNode root = treeCreator.createBinaryTree(descriptions);
+        
+        // Print the tree (in-order traversal for simplicity)
+        System.out.println("In-order traversal:");
+        printInOrder(root);
+    }
+    
+    // Helper method to print in-order traversal of the tree
+    private static void printInOrder(TreeNode node) {
+        if (node != null) {
+            printInOrder(node.left);
+            System.out.print(node.val + " ");
+            printInOrder(node.right);
+        }
+    }
+}
