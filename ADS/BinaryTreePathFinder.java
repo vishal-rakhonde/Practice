@@ -47,3 +47,39 @@ startValue != destValue
  *     }
  * }
  */
+ 
+ public class BinaryTreePathFinder {
+    private boolean find(TreeNode n, int val, StringBuilder sb) {
+        if (n.val == val)
+            return true;
+        if (n.left != null && find(n.left, val, sb))
+            sb.append("L");
+        else if (n.right != null && find(n.right, val, sb))
+            sb.append("R");
+        return sb.length() > 0;
+    }
+
+    public String getDirections(TreeNode root, int startValue, int destValue) {
+        StringBuilder s = new StringBuilder(), d = new StringBuilder();
+        find(root, startValue, s);
+        find(root, destValue, d);
+        int i = 0, max_i = Math.min(d.length(), s.length());
+        while (i < max_i && s.charAt(s.length() - i - 1) == d.charAt(d.length() - i - 1))
+            ++i;
+        return "U".repeat(s.length() - i) + d.reverse().toString().substring(i);
+    }
+
+    public static void main(String[] args) {
+        // Example usage
+        TreeNode root = new TreeNode(1,
+                        new TreeNode(2, new TreeNode(4), new TreeNode(5)),
+                        new TreeNode(3));
+        BinaryTreePathFinder solution = new BinaryTreePathFinder();
+        int startValue = 2;
+        int destValue = 5;
+        String directions = solution.getDirections(root, startValue, destValue);
+        System.out.println("Directions: " + directions);
+    }
+}
+}
+}
