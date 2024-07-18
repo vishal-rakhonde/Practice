@@ -26,3 +26,74 @@ The number of nodes in the tree is in the range [1, 210].
 1 <= distance <= 10
 
 */
+
+import java.util.*;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode() {}
+
+    TreeNode(int val) {
+        this.val = val;
+    }
+
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+class GoodLeafPairsCounter {
+    private int numOfGoodLeafPairs;
+
+    private List<Integer> dfs(TreeNode node, int distance) {
+        if (node == null) return new ArrayList<>();
+        if (node.left == null && node.right == null) return Arrays.asList(1);
+
+        List<Integer> leftList = dfs(node.left, distance);
+        List<Integer> rightList = dfs(node.right, distance);
+
+        for (int lv : leftList) {
+            for (int rv : rightList) {
+                if (lv + rv <= distance) numOfGoodLeafPairs++;
+            }
+        }
+
+        List<Integer> parentList = new ArrayList<>();
+        for (int lv : leftList) {
+            if (lv + 1 <= distance) parentList.add(lv + 1);
+        }
+
+        for (int rv : rightList) {
+            if (rv + 1 <= distance) parentList.add(rv + 1);
+        }
+
+        return parentList;
+    }
+
+    public int countPairs(TreeNode root, int distance) {
+        numOfGoodLeafPairs = 0;
+        dfs(root, distance);
+        return numOfGoodLeafPairs;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.right = new TreeNode(6);
+
+        GoodLeafPairsCounter counter = new GoodLeafPairsCounter();
+        int distance = 3;
+        int result = counter.countPairs(root, distance);
+        System.out.println("Number of good leaf pairs: " + result);
+    }
+}
