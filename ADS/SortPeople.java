@@ -28,3 +28,37 @@ n == names.length == heights.length
 names[i] consists of lower and upper case English letters.
 All the values of heights are distinct.
 */
+import java.util.*;
+
+class Person {
+    String name;
+    int height;
+
+    Person(String name, int height) {
+        this.name = name;
+        this.height = height;
+    }
+}
+
+class SortPeople {
+    public String[] sortPeople(String[] names, int[] heights) {
+        List<Person> people = new ArrayList<>();
+        for (int i = 0; i < names.length; i++) {
+            people.add(new Person(names[i], heights[i]));
+        }
+        people.sort((a, b) -> b.height - a.height);
+        String[] result = new String[people.size()];
+        for (int i = 0; i < people.size(); i++) {
+            result[i] = people.get(i).name;
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        SortPeople sortPeople = new SortPeople();
+        String[] names = {"Mary", "John", "Emma"};
+        int[] heights = {160, 180, 170};
+        String[] sortedPeople = sortPeople.sortPeople(names, heights);
+        System.out.println(Arrays.toString(sortedPeople));
+    }
+}
