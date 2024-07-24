@@ -41,3 +41,36 @@ All the values of mapping[i] are unique.
 1 <= nums.length <= 3 * 104
 0 <= nums[i] < 109
 */
+
+import java.util.Arrays;
+
+public class JumbledSorter {
+  public int[] sortJumbled(int[] mapping, int[] nums) {
+    var n = nums.length;
+    var arr = new int[n][2];
+
+    for (var i = 0; i < n; i++) {
+      arr[i][0] = nums[i];
+      
+      if (nums[i] == 0)
+        arr[i][1] = mapping[0];
+
+      for (int j = nums[i], k = 1; j > 0; j /= 10, k *= 10)
+        arr[i][1] += (mapping[j % 10] * k);
+    }
+    Arrays.sort(arr, (a, b) -> Integer.compare(a[1], b[1]));
+
+    for (var i = 0; i < n; i++)
+      nums[i] = arr[i][0];
+
+    return nums;
+  }
+
+  public static void main(String[] args) {
+    JumbledSorter js = new JumbledSorter();
+    int[] mapping = {8, 9, 4, 0, 2, 1, 3, 5, 7, 6};
+    int[] nums = {990, 332, 981};
+    int[] sorted = js.sortJumbled(mapping, nums);
+    System.out.println(Arrays.toString(sorted));
+  }
+}
