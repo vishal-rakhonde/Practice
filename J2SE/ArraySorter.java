@@ -23,3 +23,28 @@ Constraints:
 1 <= nums.length <= 5 * 10^4
 -5 * 104 <= nums[i] <= 5 * 10^4
 */
+
+public class ArraySorter {
+  public int[] sortArray(int[] nums) {
+    var map = new int[100001];
+
+    for (var n : nums)
+      map[n + 50000]++;
+
+    var k = 0;
+    for (var i = 0; i < 100001; i++)
+      for (var j = 0; j < map[i]; j++)
+        nums[k++] = i - 50000;
+
+    return nums;
+  }
+
+  public static void main(String[] args) {
+    ArraySorter sorter = new ArraySorter();
+    int[] nums = {5, 1, 1, 2, 0, 0};
+    int[] sortedNums = sorter.sortArray(nums);
+    for (int num : sortedNums) {
+      System.out.print(num + " ");
+    }
+  }
+}
