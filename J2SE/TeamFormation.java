@@ -32,3 +32,45 @@ n == rating.length
 1 <= rating[i] <= 105
 All the integers in rating are unique.
 */
+
+import java.util.Arrays;
+
+class TeamFormation {
+    private int countSequences(int n, int prevIdx, int currIdx, int cnt, int[] rating, int[][][] memo, boolean isIncreasing) {
+        if (cnt == 3) return 1;
+        if (currIdx == n) return 0;
+
+        if (memo[prevIdx + 1][currIdx][cnt] != -1) return memo[prevIdx + 1][currIdx][cnt];
+
+        int take = 0;
+        if (prevIdx == -1 || (isIncreasing ? rating[currIdx] > rating[prevIdx] : rating[currIdx] < rating[prevIdx])) {
+            take = countSequences(n, currIdx, currIdx + 1, cnt + 1, rating, memo, isIncreasing);
+        }
+        int notTake = countSequences(n, prevIdx, currIdx + 1, cnt, rating, memo, isIncreasing);
+        return memo[prevIdx + 1][currIdx][cnt] = take + notTake;
+    }
+
+    public int numTeams(int[] rating) {
+        int n = rating.length;
+        int[][][] memo = new int[n + 1][n + 1][4];
+        for (int[][] plane : memo) {
+            for (int[] row : plane) {
+                Arrays.fill(row, -1);
+            }
+        }
+        int res = countSequences(n, -1, 0, 0, rating, memo, true);
+        for (int[][] plane : memo) {
+            for (int[] row : plane) {
+                Arrays.fill(row, -1);
+            }
+        }
+        return res + countSequences(n, -1, 0, 0, rating, memo, false);
+    }
+
+    public static void main(String[] args) {
+        TeamFormation solution = new TeamFormation();
+        int[] rating = {2, 5, 3, 4, 1};
+        int result = solution.numTeams(rating);
+        System.out.println("Number of valid teams: " + result); // Expected output: 3
+    }
+}
