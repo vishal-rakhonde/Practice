@@ -26,3 +26,25 @@ Constraints:
 1 <= s.length <= 105
 s[i] is 'a' or 'b'​​
 */
+
+public class MinimumDeletions {
+
+    public int minimumDeletions(String s) {
+        int count = 0, ans = 0;
+        for (char c : s.toCharArray()) {
+            if (c == 'b') {
+                count++;
+            } else {
+                ans = Math.min(ans + 1, count);
+            }
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        MinimumDeletions solution = new MinimumDeletions();
+        String input = "aababbab";
+        int result = solution.minimumDeletions(input);
+        System.out.println("Minimum deletions required: " + result);
+    }
+}
