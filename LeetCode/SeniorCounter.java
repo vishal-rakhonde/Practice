@@ -30,3 +30,32 @@ details[i] consists of digits from '0' to '9'.
 details[i][10] is either 'M' or 'F' or 'O'.
 The phone numbers and seat numbers of the passengers are distinct.
 */
+import java.util.Scanner;
+
+public class SeniorCounter {
+    public int countSeniors(String[] details) {
+        int seniorsCnt = 0;
+        for (int i = 0; i < details.length; i++) {
+            int age = (details[i].charAt(11) - '0') * 10 + (details[i].charAt(12) - '0');
+            if (age > 60) seniorsCnt++;
+        }
+        return seniorsCnt;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the number of details:");
+        int n = scanner.nextInt();
+        scanner.nextLine(); 
+
+        String[] details = new String[n];
+        for (int i = 0; i < n; i++) {
+            System.out.println("Enter detail " + (i + 1) + ":");
+            details[i] = scanner.nextLine();
+        }
+
+        SeniorCounter solution = new SeniorCounter();
+        int count = solution.countSeniors(details);
+        System.out.println("Number of seniors: " + count);
+    }
+}
