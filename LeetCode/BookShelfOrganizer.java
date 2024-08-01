@@ -30,3 +30,36 @@ Constraints:
 1 <= thicknessi <= shelfWidth <= 1000
 1 <= heighti <= 1000
 */
+import java.util.Arrays;
+
+class BookShelfOrganizer {
+    public int minHeightShelves(int[][] books, int shelfWidth) {
+        int len = books.length;
+        int[] dp = new int[len + 1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+
+        for (int i = 1; i <= len; i++) {
+            int width = 0, height = 0;
+            for (int j = i; j > 0; j--) {
+                width += books[j - 1][0];
+                if (width > shelfWidth) break;
+                height = Math.max(height, books[j - 1][1]);
+                dp[i] = Math.min(dp[i], dp[j - 1] + height);
+            }
+        }
+        return dp[len];
+    }
+
+    public static void main(String[] args) {
+        BookShelfOrganizer organizer = new BookShelfOrganizer();
+
+        int[][] books1 = {{1, 3}, {2, 4}, {3, 2}};
+        int shelfWidth1 = 6;
+        System.out.println("Minimum shelf height: " + organizer.minHeightShelves(books1, shelfWidth1));
+
+        int[][] books2 = {{1, 3}, {2, 4}, {3, 2}, {1, 1}};
+        int shelfWidth2 = 4;
+        System.out.println("Minimum shelf height: " + organizer.minHeightShelves(books2, shelfWidth2));
+    }
+}
