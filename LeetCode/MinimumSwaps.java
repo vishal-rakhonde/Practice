@@ -41,3 +41,38 @@ Constraints:
 1 <= nums.length <= 105
 nums[i] is either 0 or 1.
 */
+
+public class MinimumSwaps {
+    public static int minSwaps(int[] nums) {
+        int count = 0;
+        for (int x : nums) {
+            if (x == 1) count++;
+        }
+
+        int max1 = 0;
+        int si = 0;
+        int ei = si + count;
+        int ic = 0;
+
+        for (int i = si; i < ei; i++) {
+            if (nums[i % nums.length] == 1) ic++;
+        }
+        ei--;
+
+        max1 = ic;
+        while (si < nums.length) {
+            if (nums[si % nums.length] == 1) ic--;
+            si++;
+            ei++;
+            if (nums[ei % nums.length] == 1) ic++;
+            if (ic > max1) max1 = ic;
+        }
+
+        return count - max1;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {0, 1, 0, 1, 0, 1};
+        System.out.println(minSwaps(nums));
+    }
+}
