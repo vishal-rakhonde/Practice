@@ -32,3 +32,29 @@ target.length == arr.length
 1 <= target[i] <= 1000
 1 <= arr[i] <= 1000
 */
+
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
+public class ArrayEqualityChecker {
+  public boolean canBeEqual(int[] target, int[] arr) {
+    int[] map = new int[1001];
+
+    IntStream.range(0, arr.length).forEach(i -> {
+      map[arr[i]]++;
+      map[target[i]]--;
+    });
+
+    return IntStream.of(map).allMatch(count -> count == 0);
+  }
+
+  public static void main(String[] args) {
+    ArrayEqualityChecker checker = new ArrayEqualityChecker();
+    
+    int[] target = {1, 2, 3, 4};
+    int[] arr = {2, 4, 1, 3};
+
+    boolean result = checker.canBeEqual(target, arr);
+    System.out.println(result); // Expected output: true
+  }
+}
