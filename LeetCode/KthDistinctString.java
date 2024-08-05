@@ -36,3 +36,31 @@ Constraints:
 1 <= arr[i].length <= 5
 arr[i] consists of lowercase English letters.
 */
+
+import java.util.HashMap;
+
+public class KthDistinctString {
+    public String kthDistinct(String[] arr, int k) {
+        HashMap<String, Integer> help = new HashMap<>();
+        
+        for(String str : arr)
+            help.put(str, help.getOrDefault(str, 0) + 1);
+        
+        for(int i = 0; i < arr.length; ++i){
+            if(help.get(arr[i]) == 1){
+                --k;
+                if(k == 0)
+                    return arr[i];
+            }
+        }
+        return "";
+    }
+
+    public static void main(String[] args) {
+        KthDistinctString solution = new KthDistinctString();
+        String[] arr = {"a", "b", "a", "c", "b", "c", "d"};
+        int k = 1;
+        String result = solution.kthDistinct(arr, k);
+        System.out.println("The " + k + "th distinct string is: " + result);
+    }
+}
