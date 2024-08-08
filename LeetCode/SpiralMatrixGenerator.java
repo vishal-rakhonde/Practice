@@ -23,3 +23,43 @@ Constraints:
 0 <= rStart < rows
 0 <= cStart < cols
 */
+class SpiralMatrixGenerator {
+    public int[][] spiralMatrixIII(int rows, int cols, int rStart, int cStart) {
+        int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // East, South, West, North
+        int[][] result = new int[rows * cols][2];
+        int steps = 1, d = 0, count = 0;
+        
+        result[count++] = new int[]{rStart, cStart};
+        
+        while (count < rows * cols) {
+            for (int i = 0; i < steps; i++) {
+                rStart += directions[d][0];
+                cStart += directions[d][1];
+                
+                if (rStart >= 0 && rStart < rows && cStart >= 0 && cStart < cols) {
+                    result[count++] = new int[]{rStart, cStart};
+                }
+            }
+            
+            d = (d + 1) % 4;
+            
+            if (d == 0 || d == 2) steps++;
+        }
+        
+        return result;
+    }
+
+    public static void main(String[] args) {
+        SpiralMatrixGenerator generator = new SpiralMatrixGenerator();
+        int rows = 5;
+        int cols = 6;
+        int rStart = 1;
+        int cStart = 4;
+
+        int[][] result = generator.spiralMatrixIII(rows, cols, rStart, cStart);
+
+        for (int[] point : result) {
+            System.out.println("(" + point[0] + ", " + point[1] + ")");
+        }
+    }
+}
