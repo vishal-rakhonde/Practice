@@ -33,3 +33,41 @@ Constraints:
 1 <= bills.length <= 105
 bills[i] is either 5, 10, or 20.
 */
+
+class LemonadeStand {
+    public boolean lemonadeChange(int[] bills) {
+        int fiveCnt = 0, tenCnt = 0;
+        for (var bill : bills) {
+            if (bill == 5) {
+                fiveCnt++;
+            } else if (bill == 10) {
+                if (fiveCnt == 0) {
+                    return false;
+                } else {
+                    fiveCnt--;
+                    tenCnt++;
+                }
+            } else {
+                if (fiveCnt == 0 || (fiveCnt < 3 && tenCnt == 0)) {
+                    return false;
+                } else {
+                    if (tenCnt == 0) {
+                        fiveCnt -= 3;
+                    } else {
+                        fiveCnt--;
+                        tenCnt--;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        LemonadeStand lemonadeStand = new LemonadeStand();
+        int[] bills1 = {5, 5, 5, 10, 20};
+        int[] bills2 = {5, 5, 10, 10, 20};
+        System.out.println("Can give change for bills1? " + lemonadeStand.lemonadeChange(bills1)); // Output: true
+        System.out.println("Can give change for bills2? " + lemonadeStand.lemonadeChange(bills2)); // Output: false
+    }
+}
