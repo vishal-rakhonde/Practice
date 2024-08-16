@@ -28,3 +28,36 @@ m == arrays.length
 arrays[i] is sorted in ascending order.
 There will be at most 105 integers in all the arrays
 */
+import java.util.*;
+
+class MaxDistanceCalculator {
+    public int maxDistance(List<List<Integer>> arrays) {
+        int maxD = 0;
+        int minElement = arrays.get(0).get(0); // Initialize first element of the first array
+        int maxElement = arrays.get(0).get(arrays.get(0).size() - 1); // Initialize last element of the first array
+        
+        for (int i = 1; i < arrays.size(); i++) {
+            List<Integer> currArray = arrays.get(i);
+            // Calculate minimum distance between smallest element and the last element of current array
+            int disMin = Math.abs(currArray.get(0) - maxElement);
+            // Calculate maximum distance between largest element and the first element of current array
+            int disMax = Math.abs(currArray.get(currArray.size() - 1) - minElement);
+            maxD = Math.max(maxD, Math.max(disMin, disMax));
+            minElement = Math.min(minElement, currArray.get(0));
+            maxElement = Math.max(maxElement, currArray.get(currArray.size() - 1));
+        }
+        return maxD;
+    }
+
+    public static void main(String[] args) {
+        MaxDistanceCalculator calculator = new MaxDistanceCalculator();
+        List<List<Integer>> arrays = Arrays.asList(
+            Arrays.asList(1, 2, 3),
+            Arrays.asList(4, 5),
+            Arrays.asList(1, 2, 3)
+        );
+        
+        int result = calculator.maxDistance(arrays);
+        System.out.println("The maximum distance is: " + result);
+    }
+}
