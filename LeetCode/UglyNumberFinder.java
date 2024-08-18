@@ -24,4 +24,41 @@ Constraints:
 
 1 <= n <= 1690
 */
+public class UglyNumberFinder {
 
+    public int nthUglyNumber(int n) {
+        int[] num = new int[n];
+        num[0] = 1;
+        int i2 = 0, i3 = 0, i5 = 0;
+        int nextMultipleOf2 = 2;
+        int nextMultipleOf3 = 3;
+        int nextMultipleOf5 = 5;
+        
+        for (int i = 1; i < n; i++) {
+            int nextUgly = Math.min(nextMultipleOf2, Math.min(nextMultipleOf3, nextMultipleOf5));
+            num[i] = nextUgly;
+            
+            if (nextUgly == nextMultipleOf2) {
+                i2++;
+                nextMultipleOf2 = num[i2] * 2;
+            }
+            if (nextUgly == nextMultipleOf3) {
+                i3++;
+                nextMultipleOf3 = num[i3] * 3;
+            }
+            if (nextUgly == nextMultipleOf5) {
+                i5++;
+                nextMultipleOf5 = num[i5] * 5;
+            }
+        }
+        
+        return num[n - 1];
+    }
+
+    public static void main(String[] args) {
+        UglyNumberFinder finder = new UglyNumberFinder();
+        int n = 10;  
+        int nthUglyNumber = finder.nthUglyNumber(n);
+        System.out.println("The " + n + "th ugly number is: " + nthUglyNumber);
+    }
+}
