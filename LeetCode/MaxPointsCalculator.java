@@ -46,3 +46,46 @@ n == points[r].length
 0 <= points[r][c] <= 105
 
 */
+class MaxPointsCalculator {
+    public long maxPoints(int[][] grid) {
+        int width = grid[0].length;
+        long[] dp = new long[width];
+
+        for (int[] level : grid) {
+            long[] newDp = new long[width];
+            long leftMax = dp[0];
+
+            for (int i = 0; i < width; ++i) {
+                if (i > 0) {
+                    leftMax = Math.max(leftMax - 1, dp[i]);
+                }
+                newDp[i] = leftMax + level[i];
+            }
+
+            long rightMax = dp[width - 1];
+            for (int i = width - 1; i >= 0; --i) {
+                if (i < width - 1) {
+                    rightMax = Math.max(rightMax - 1, dp[i]);
+                }
+                newDp[i] = Math.max(newDp[i], rightMax + level[i]);
+            }
+
+            dp = newDp;
+        }
+
+        return java.util.Arrays.stream(dp).max().getAsLong();
+    }
+
+    public static void main(String[] args) {
+        MaxPointsCalculator calculator = new MaxPointsCalculator();
+        
+        int[][] grid = {
+            {1, 2, 3},
+            {1, 5, 1},
+            {3, 1, 1}
+        };
+        
+        long result = calculator.maxPoints(grid);
+        System.out.println("Maximum points: " + result);
+    }
+}
