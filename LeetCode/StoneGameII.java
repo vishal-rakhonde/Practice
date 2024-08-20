@@ -28,3 +28,48 @@ Constraints:
 1 <= piles.length <= 100
 1 <= piles[i] <= 104
 */
+
+class StoneGameII {
+    private Map<Integer, Integer> dp = new HashMap<>();
+
+    private int score(int turn, int idx, int M, int[] piles) {
+        if (idx >= piles.length) {
+            return 0;
+        }
+
+        int key = (turn << 20) | (idx << 10) | M;
+        if (dp.containsKey(key)) {
+            return dp.get(key);
+        }
+
+        int res = (turn == 0) ? 0 : Integer.MAX_VALUE;
+        int total = 0;
+
+        for (int x = 1; x <= 2 * M; ++x) {
+            if (idx + x > piles.length) {
+                break;
+            }
+            total += piles[idx + x - 1];
+
+            if (turn == 0) {
+                res = Math.max(res, total + score(1, idx + x, Math.max(M, x), piles));
+            } else {
+                res = Math.min(res, score(0, idx + x, Math.max(M, x), piles));
+            }
+        }
+
+        dp.put(key, res);
+        return res;
+    }
+
+    public int stoneGameII(int[] piles) {
+        return score(0, 0, 1, piles);
+    }
+
+    public static void main(String[] args) {
+        StoneGameII solution = new StoneGameII();
+        int[] piles = {2, 7, 9, 4, 4};  // Example input
+        int result = solution.stoneGameII(piles);
+        System.out.println("Maximum number of stones Alice can get: " + result);
+    }
+}
