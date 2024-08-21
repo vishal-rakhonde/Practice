@@ -24,3 +24,43 @@ Constraints:
 1 <= s.length <= 100
 s consists of lowercase English letters.
 */
+
+import java.util.Arrays;
+
+public class StrangePrinterSolution {
+    public int strangePrinter(String s) {
+        int n = s.length();
+        char[] sChar = s.toCharArray();
+        int[][] dp = new int[n][n];
+        for (int[] in : dp) Arrays.fill(in, -1);
+
+        java.util.function.BiFunction<Integer, Integer, Integer> Util = new java.util.function.BiFunction<>() {
+            @Override
+            public Integer apply(Integer i, Integer j) {
+                if (i > j) return 0;
+
+                if (dp[i][j] != -1) return dp[i][j];
+
+                int firstLetter = sChar[i];
+                int answer = 1 + this.apply(i + 1, j);
+
+                for (int k = i + 1; k <= j; k++) {
+                    if (sChar[k] == firstLetter) {
+                        int betterAnswer = this.apply(i, k - 1) + this.apply(k + 1, j);
+                        answer = Math.min(answer, betterAnswer);
+                    }
+                }
+                return dp[i][j] = answer;
+            }
+        };
+
+        return Util.apply(0, n - 1);
+    }
+
+    public static void main(String[] args) {
+        StrangePrinterSolution solution = new StrangePrinterSolution();
+        String s = "aaabbb";
+        int result = solution.strangePrinter(s);
+        System.out.println("Minimum number of turns the printer needed: " + result);
+    }
+}
