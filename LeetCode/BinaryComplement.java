@@ -26,3 +26,19 @@ Constraints:
 1 <= num < 231
  
  */
+ public class BinaryComplement {
+    public int findComplement(int num) {
+        int mask = ~0;
+        while ((num & mask) != 0) {
+            mask <<= 1;
+        }
+        return ~mask & ~num;
+    }
+
+    public static void main(String[] args) {
+        BinaryComplement solution = new BinaryComplement();
+        int num = 5;
+        int complement = solution.findComplement(num);
+        System.out.println("The complement of " + num + " is: " + complement);
+    }
+}
