@@ -22,3 +22,89 @@ The number of nodes in the tree is in the range [0, 104].
 The height of the n-ary tree is less than or equal to 1000.
  
  */
+ import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
+
+class Node {
+    public int val;
+    public List<Node> children;
+
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, List<Node> _children) {
+        val = _val;
+        children = _children;
+    }
+}
+
+class Solution {
+    public List<Integer> postorder(Node root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            Node current = stack.pop();
+            result.add(current.val);
+            
+            for (Node child : current.children) {
+                stack.push(child);
+            }
+        }
+
+        Collections.reverse(result);
+        return result;
+    }
+}
+
+public class NaryTreePostorderTraversal {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the values for the tree in level order (use -1 to represent null):");
+        
+        String[] input = scanner.nextLine().split(" ");
+        Queue<Node> queue = new LinkedList<>();
+        
+        if (input.length == 0 || input[0].equals("-1")) {
+            System.out.println("[]");
+            return;
+        }
+        
+        Node root = new Node(Integer.parseInt(input[0]));
+        queue.add(root);
+        int index = 1;
+        
+        while (!queue.isEmpty() && index < input.length) {
+            Node current = queue.poll();
+            List<Node> children = new ArrayList<>();
+            
+            while (index < input.length && !input[index].equals("-1")) {
+                Node child = new Node(Integer.parseInt(input[index]));
+                children.add(child);
+                queue.add(child);
+                index++;
+            }
+            
+            current.children = children;
+            index++;
+        }
+        
+        Solution solution = new Solution();
+        List<Integer> result = solution.postorder(root);
+        System.out.println(result);
+        
+        scanner.close();
+    }
+}
