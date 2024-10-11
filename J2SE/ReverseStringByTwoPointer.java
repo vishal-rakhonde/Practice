@@ -1,3 +1,4 @@
+import java.util.Scanner;
 class ReverseStringByTwoPointer{
 	public String reverseString(String str){
 		char[] charArray=str.toCharArray();
@@ -15,7 +16,9 @@ class ReverseStringByTwoPointer{
 
 	public static void main(String[] args){
 		ReverseStringByTwoPointer rs=new ReverseStringByTwoPointer();
-		String str="Hello World";
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter String");
+		String str=sc.nextLine();
 		String s=rs.reverseString(str);
 		System.out.println(s);
 	}
