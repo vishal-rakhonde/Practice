@@ -2,15 +2,21 @@ import java.util.Scanner;
 
 public class CharacterCount {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         
         System.out.print("Enter a string: ");
-        String input = scanner.nextLine();
+        String input = sc.nextLine();
         
-        int characterCount = input.length();
+        int characterCount = 0;
         
-        System.out.println("Number of characters: " + characterCount);
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) != ' ') {  // Ignore spaces
+                characterCount++;
+            }
+        }
         
-        scanner.close();
+        System.out.println("Number of characters (excluding spaces): " + characterCount);
+        
+        sc.close();
     }
 }
