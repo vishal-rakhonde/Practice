@@ -23,21 +23,17 @@ public class SearchInsertPosition {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Input array size
         int n = sc.nextInt();
         int[] nums = new int[n];
 
-        // Input array elements
         for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt();
         }
 
-        // Input target value
         int target = sc.nextInt();
 
-        // Output the result
         System.out.println(searchInsertPosition(nums, target));
         
-        sc.close(); // Close the scanner to avoid resource leaks
+        sc.close(); 
     }
 }
