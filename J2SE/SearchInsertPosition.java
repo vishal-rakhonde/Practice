@@ -17,7 +17,7 @@ public class SearchInsertPosition {
             }
         }
 
-        return left; // The insertion position
+        return left; 
     }
 
     public static void main(String[] args) {
