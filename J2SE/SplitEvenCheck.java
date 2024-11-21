@@ -7,7 +7,6 @@ public class SplitEvenCheck {
         }
         return "NO";
     }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
