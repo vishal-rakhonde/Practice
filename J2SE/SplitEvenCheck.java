@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class SplitEvenCheck {
     public static String isSplitEven(int N) {
         if (N > 2 && N % 2 == 0) {
@@ -7,12 +9,13 @@ public class SplitEvenCheck {
     }
 
     public static void main(String[] args) {
-        
-        int[] testCases = {1, 2, 3, 4, 6, 8, 10};
+        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Testing whether numbers can be split into two even integers:");
-        for (int N : testCases) {
-            System.out.println("N = " + N + " -> " + isSplitEven(N));
-        }
+        System.out.println("Enter a number to check if it can be split into two even integers:");
+        int N = sc.nextInt(); // Take input from the user
+
+        System.out.println("N = " + N + " -> " + isSplitEven(N));
+
+        sc.close();
     }
 }
