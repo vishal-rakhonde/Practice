@@ -2,7 +2,17 @@ import java.util.*;
 
 public class DuplicateFinder {
     public static void main(String[] args) {
-        List<String> elements = Arrays.asList("apple", "banana", "orange", "apple", "banana", "grape");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the number of elements:");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        List<String> elements = new ArrayList<>();
+        System.out.println("Enter the elements:");
+        for (int i = 0; i < n; i++) {
+            elements.add(sc.nextLine());
+        }
 
         Set<String> seen = new HashSet<>();
         Set<String> duplicates = new HashSet<>();
