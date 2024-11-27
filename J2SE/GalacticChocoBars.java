@@ -1,18 +1,16 @@
 public class GalacticChocoBars {
     public static void main(String[] args) {
         int credits = 15;
-        int chocoCost = 1;
         int wrapperExchangeRate = 3;
 
-        int chocoBars = credits / chocoCost;
-        int wrappers = chocoBars;
+        int totalChocoBars = credits;
+        int wrappers = credits;
 
         while (wrappers >= wrapperExchangeRate) {
-            int extraBars = wrappers / wrapperExchangeRate;
-            chocoBars += extraBars;
-            wrappers = wrappers % wrapperExchangeRate + extraBars;
+            totalChocoBars += wrappers / wrapperExchangeRate;
+            wrappers = wrappers / wrapperExchangeRate + wrappers % wrapperExchangeRate;
         }
 
-        System.out.println("Total ChocoBars consumed: " + chocoBars);
+        System.out.println("Total ChocoBars consumed: " + totalChocoBars);
     }
 }
