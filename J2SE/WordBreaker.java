@@ -14,7 +14,6 @@ public class WordBreaker {
                 System.out.print(ch[i]);
             }
         }
-
         sc.close();
     }
 }
