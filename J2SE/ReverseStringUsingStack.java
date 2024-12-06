@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.Stack;
 
 public class ReverseStringUsingStack {
@@ -14,9 +15,11 @@ public class ReverseStringUsingStack {
     }
 
     public static void main(String[] args) {
-        String input = "Hello, World!";
-        System.out.println("Original String: " + input);
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a string to reverse: ");
+        String input = sc.nextLine();
         String reversed = reverseString(input);
         System.out.println("Reversed String: " + reversed);
+        sc.close();
     }
 }
