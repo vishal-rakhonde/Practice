@@ -1,8 +1,11 @@
 import java.util.HashSet;
+import java.util.Scanner;
 
 public class RemoveDuplicatesUsingHashSet {
     public static void main(String[] args) {
-        String input = "programming";
+        Scanner sc = new Scanner(System.in); // Renamed to 'sc'
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
         StringBuilder result = new StringBuilder();
 
         HashSet<Character> charSet = new HashSet<>();
