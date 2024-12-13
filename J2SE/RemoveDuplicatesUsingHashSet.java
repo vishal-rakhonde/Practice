@@ -14,7 +14,6 @@ public class RemoveDuplicatesUsingHashSet {
                 result.append(c);
             }
         }
-
         System.out.println("String after removing duplicates: " + result.toString());
     }
 }
