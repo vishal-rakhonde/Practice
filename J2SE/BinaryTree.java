@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class Node {
     int data;
     Node left, right;
@@ -15,14 +17,31 @@ class BinaryTree {
         root = null;
     }
 
-    public static void main(String[] args) {
-        BinaryTree tree = new BinaryTree();
-        tree.root = new Node(1);
-        tree.root.left = new Node(2);
-        tree.root.right = new Node(3);
-        tree.root.left.left = new Node(4);
-        tree.root.left.right = new Node(5);
+    Node createTree(Scanner sc) {
+        System.out.print("Enter node value (-1 for no node): ");
+        int value = sc.nextInt();
 
-        System.out.println("Binary tree is created.");
+        if (value == -1) {
+            return null;
+        }
+
+        Node newNode = new Node(value);
+        System.out.println("Enter left child of " + value);
+        newNode.left = createTree(sc);
+        System.out.println("Enter right child of " + value);
+        newNode.right = createTree(sc);
+
+        return newNode;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        BinaryTree tree = new BinaryTree();
+
+        System.out.println("Create your binary tree:");
+        tree.root = tree.createTree(sc);
+
+        System.out.println("Binary tree created successfully!");
+        sc.close();
     }
 }
