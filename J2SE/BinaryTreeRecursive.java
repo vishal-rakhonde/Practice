@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class TreeNode {
     int val;
     TreeNode left, right;
@@ -18,14 +20,28 @@ public class BinaryTreeRecursive {
         preorderTraversal(node.right);
     }
 
+    public TreeNode createTree(Scanner sc) {
+        System.out.print("Enter node value (-1 for no node): ");
+        int val = sc.nextInt();
+        if (val == -1) return null;
+
+        TreeNode node = new TreeNode(val);
+        System.out.println("Enter left child of " + val);
+        node.left = createTree(sc);
+        System.out.println("Enter right child of " + val);
+        node.right = createTree(sc);
+
+        return node;
+    }
+
     public static void main(String[] args) {
         BinaryTreeRecursive tree = new BinaryTreeRecursive();
-        tree.root = new TreeNode(1);
-        tree.root.left = new TreeNode(2);
-        tree.root.right = new TreeNode(3);
-        tree.root.left.left = new TreeNode(4);
-        tree.root.left.right = new TreeNode(5);
+        Scanner sc = new Scanner(System.in);
 
+        System.out.println("Create your binary tree:");
+        tree.root = tree.createTree(sc);
+
+        System.out.println("Preorder traversal of the binary tree:");
         tree.preorderTraversal(tree.root);
     }
 }
