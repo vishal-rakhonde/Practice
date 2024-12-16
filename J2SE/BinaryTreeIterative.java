@@ -1,4 +1,4 @@
-import java.util.Stack;
+import java.util.*;
 
 class TreeNode {
     int val;
@@ -27,14 +27,38 @@ public class BinaryTreeIterative {
         }
     }
 
+    public TreeNode buildTree(Scanner sc) {
+        System.out.print("Enter root value: ");
+        int rootVal = sc.nextInt();
+        TreeNode root = new TreeNode(rootVal);
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode current = queue.poll();
+
+            System.out.print("Enter left child of " + current.val + " (-1 for no child): ");
+            int leftVal = sc.nextInt();
+            if (leftVal != -1) {
+                current.left = new TreeNode(leftVal);
+                queue.add(current.left);
+            }
+
+            System.out.print("Enter right child of " + current.val + " (-1 for no child): ");
+            int rightVal = sc.nextInt();
+            if (rightVal != -1) {
+                current.right = new TreeNode(rightVal);
+                queue.add(current.right);
+            }
+        }
+        return root;
+    }
+
     public static void main(String[] args) {
         BinaryTreeIterative tree = new BinaryTreeIterative();
-        tree.root = new TreeNode(1);
-        tree.root.left = new TreeNode(2);
-        tree.root.right = new TreeNode(3);
-        tree.root.left.left = new TreeNode(4);
-        tree.root.left.right = new TreeNode(5);
-
+        Scanner sc = new Scanner(System.in);
+        tree.root = tree.buildTree(sc);
         tree.preorderTraversal(tree.root);
     }
 }
