@@ -47,8 +47,7 @@ startValue != destValue
  *     }
  * }
  */
- 
- public class BinaryTreePathFinder {
+public class BinaryTreePathFinder {
     private boolean find(TreeNode n, int val, StringBuilder sb) {
         if (n.val == val)
             return true;
