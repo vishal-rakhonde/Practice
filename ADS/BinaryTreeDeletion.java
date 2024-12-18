@@ -42,7 +42,6 @@ class TreeNode {
         this.right = right;
     }
 }
-
 class BinaryTreeDeletion {
     public List<TreeNode> delNodes(TreeNode root, int[] to_delete) {
         Set<Integer> valsToDelete = new HashSet<>();
