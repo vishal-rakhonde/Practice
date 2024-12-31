@@ -1,7 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-
 class TreeNode {
     int val;
     TreeNode left, right;
