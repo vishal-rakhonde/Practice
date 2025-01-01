@@ -10,7 +10,6 @@ class TreeNode {
         this.left = this.right = null;
     }
 }
-
 public class MergeTrees {
 
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
