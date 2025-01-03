@@ -1,3 +1,4 @@
+//remove duplicate from string and count element occurence
 public class RemoveDuplicatesAndCount {
     public static void main(String[] args) {
         String str = "programming";
