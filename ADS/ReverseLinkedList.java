@@ -17,9 +17,7 @@ public class ReverseLinkedList {
         }
 
         System.out.println("Original LinkedList: " + list);
-
         Collections.reverse(list);
-
         System.out.println("Reversed LinkedList: " + list);
 
         sc.close();
