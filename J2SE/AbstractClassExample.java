@@ -15,7 +15,3 @@ class Demo extends AbstractClassExample {
 		d.display();
 	}
 }
-
-// output :
-// In print method
-// In display method
