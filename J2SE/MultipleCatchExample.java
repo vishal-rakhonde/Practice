@@ -1,12 +1,11 @@
 public class MultipleCatchExample {
     public static void main(String[] args) {
         try {
-            // Simulate different exceptions
             int[] numbers = {1, 2, 3};
             System.out.println(numbers[5]); // ArrayIndexOutOfBoundsException
             
             int result = 10 / 0; // ArithmeticException
-            
+            // used multiple catch block in child to parent hierarchical exception
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Error: Array index is out of bounds.");
         } catch (ArithmeticException e) {
