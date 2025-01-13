@@ -10,7 +10,6 @@ class Node {
 	}
 }
 
-
 public class BinaryTreeExample {
 	Node root;
 	public BinaryTreeExample(){
