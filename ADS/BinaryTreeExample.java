@@ -1,3 +1,4 @@
+import java.util.Scanner;
 class Node {
 	int value;
 	Node left;
