@@ -9,9 +9,11 @@ public class RemoveDuplicatesFromArray {
         int size = sc.nextInt();
         int[] array = new int[size];
         System.out.println("Enter the elements of the array:");
+		
         for (int i = 0; i < size; i++) {
             array[i] = sc.nextInt();
         }
+		
         System.out.println("Original Array: " + Arrays.toString(array));
         int[] result = removeDuplicates(array);
         System.out.println("Array after removing duplicates: " + Arrays.toString(result));
