@@ -8,4 +8,3 @@ class ArrayListExample {
 		System.out.println(list);
 	}
 }
-		
