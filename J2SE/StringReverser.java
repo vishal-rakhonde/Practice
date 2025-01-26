@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.util.Scanner;
 
 public class StringReverser {
     public static String reverseString(String input) {
@@ -14,8 +15,10 @@ public class StringReverser {
     }
 
     public static void main(String[] args) {
-        String original = "HelloWorld";
-        System.out.println("Original String: " + original);
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a string to reverse: ");
+        String original = sc.nextLine();
         System.out.println("Reversed String: " + reverseString(original));
+        sc.close();
     }
 }
