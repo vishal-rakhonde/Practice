@@ -7,4 +7,4 @@ class ArrayListExample {
 		list.add("Vaibhav");
 		System.out.println(list);
 	}
-}
+} 
