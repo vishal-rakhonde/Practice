@@ -1,6 +1,5 @@
 import java.util.Stack;
 import java.util.Scanner;
-
 public class StringReverser {
     public static String reverseString(String input) {
         Stack<Character> stack = new Stack<>();
