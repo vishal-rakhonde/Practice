@@ -12,10 +12,8 @@ class TwoSum {
 				}
             map.put(arr[i], i); 
 		}
-        
         return new int[]{}; 
     }
-
     public static void main(String[] args) {
         int arr[] = {10, 50, 60, 4, 20, 34, 20};
         int target = 40;
