@@ -15,7 +15,7 @@ class CountCharacter {
 		
 		public static void countCharacters(String str){
 			boolean[] isCounted = new boolean[256];
-			for(int i=0;i< str.length();i++){
+			for(int i=0;i<str.length();i++){
 				char currentChar = str.charAt(i);
 				
 				if(isCounted[currentChar]){
