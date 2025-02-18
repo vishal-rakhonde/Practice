@@ -1,22 +1,20 @@
 interface Animal {
-	void makeSound();
-	void eat();
+	void sound();
+	void sleep();
 }
-class Dog implements Animal {
-	@Override
-	public void makeSound () {
-		System.out.println("Barks");
+class Dog implements Animal{
+	public void sound(){
+		System.out.println("dog barks");
 	}
-	
-	@Override
-	public void eat () {
-		System.out.println("Dog is eating");
+	public void sleep(){
+		System.out.println("Dog Sleeps");
 	}
 }
 public class InterfaceExample {
-	public static void main(String[] args){
-		Dog d = new Dog();
-		d.makeSound();
-		d.eat();
+	public static void main(String args[]){
+		Dog dog=new Dog();
+		dog.sound();
+		dog.sleep();
 	}
 }
+	
