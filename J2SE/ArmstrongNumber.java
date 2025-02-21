@@ -1,6 +1,10 @@
-class  ArmstrongNumber {
+import java.util.Scanner;
+
+class ArmstrongNumber {
 	public static void main(String[] args){
-		int num=253;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter number : ");
+		int num=sc.nextInt();
 		int res;
 		int temp= num;
 		int sum=0;
