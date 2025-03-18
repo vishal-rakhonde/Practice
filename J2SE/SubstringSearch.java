@@ -8,7 +8,6 @@ public class SubstringSearch {
         }
         return -1;
     }
-
     public static void main(String[] args) {
         SubstringSearch solution = new SubstringSearch();
         System.out.println(solution.strStr("sadbutsad", "sad")); 
