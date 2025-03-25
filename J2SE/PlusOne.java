@@ -1,8 +1,10 @@
+import java.util.Scanner;
+
 public class PlusOne {
 
     public static int[] plusOne(int[] digits) {
         int n = digits.length;
-        
+
         for (int i = n - 1; i >= 0; i--) {
             if (digits[i] < 9) {
                 digits[i]++;
@@ -10,20 +12,10 @@ public class PlusOne {
             }
             digits[i] = 0;
         }
-        
+
         int[] result = new int[n + 1];
         result[0] = 1;
         return result;
-    }
-
-    public static void main(String[] args) {
-        int[] digits1 = {1, 2, 3};
-        int[] result1 = plusOne(digits1);
-        printArray(result1);
-
-        int[] digits2 = {4, 3, 2, 1};
-        int[] result2 = plusOne(digits2);
-        printArray(result2);
     }
 
     public static void printArray(int[] arr) {
@@ -35,5 +27,25 @@ public class PlusOne {
             }
         }
         System.out.println("]");
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the digits of the number (space-separated):");
+        String input = sc.nextLine();
+        String[] inputArray = input.split(" ");
+        int[] digits = new int[inputArray.length];
+
+        for (int i = 0; i < inputArray.length; i++) {
+            digits[i] = Integer.parseInt(inputArray[i]);
+        }
+
+        int[] result = plusOne(digits);
+
+        System.out.print("Result after adding one: ");
+        printArray(result);
+
+        sc.close();
     }
 }
