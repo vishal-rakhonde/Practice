@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class MedianOfArray {
 
@@ -13,7 +14,19 @@ public class MedianOfArray {
     }
 
     public static void main(String[] args) {
-        int[] arr = {12, 3, 5, 7, 19, 10};
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter the number of elements in the array: ");
+        int n = sc.nextInt();
+        
+        int[] arr = new int[n];
+        
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        
         System.out.println("Median of the array: " + findMedian(arr));
+        sc.close();
     }
 }
