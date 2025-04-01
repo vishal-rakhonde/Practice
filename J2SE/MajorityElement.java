@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class MajorityElement {
     
     public static int majorityElement(int[] nums) {
@@ -14,10 +16,19 @@ public class MajorityElement {
     }
     
     public static void main(String[] args) {
-        int[] nums1 = {3, 2, 3};
-        System.out.println("Majority Element in nums1: " + majorityElement(nums1)); 
+        Scanner sc = new Scanner(System.in);
         
-        int[] nums2 = {2, 2, 1, 1, 1, 2, 2};
-        System.out.println("Majority Element in nums2: " + majorityElement(nums2));  
+        System.out.print("Enter the number of elements in the array: ");
+        int n = sc.nextInt();
+        
+        int[] nums = new int[n];
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+        
+        System.out.println("Majority Element in the array: " + majorityElement(nums));
+        
+        sc.close();
     }
 }
