@@ -11,6 +11,7 @@ public class DiamondPattern {
             System.out.println();
         }
     }
+    
     private static void printChars(char ch, int count) {
         for (int i = 0; i < count; i++) {
             System.out.print(ch);
