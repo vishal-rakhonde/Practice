@@ -16,5 +16,4 @@ public class InterfaceExample {
 		dog.sound();
 		dog.sleep();
 	}
-}
-	
+}	
