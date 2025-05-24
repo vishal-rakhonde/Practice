@@ -1,3 +1,4 @@
+//interface example
 interface Animal {
 	void sound();
 	void sleep();
