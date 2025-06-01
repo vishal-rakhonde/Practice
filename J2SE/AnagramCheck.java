@@ -4,18 +4,16 @@ import java.util.Arrays;
 
 public class AnagramCheck {
     public static boolean areAnagrams(String str1, String str2) {
-        // Step 1: Check if lengths are equal
+
         if (str1.length() != str2.length()) {
             return false;
         }
 
-        // Step 2: Sort characters in both strings
         char[] arr1 = str1.toCharArray();
         char[] arr2 = str2.toCharArray();
         Arrays.sort(arr1);
         Arrays.sort(arr2);
 
-        // Step 3: Compare sorted strings
         return Arrays.equals(arr1, arr2);
     }
 
