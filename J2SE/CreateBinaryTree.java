@@ -31,10 +31,8 @@ descriptions[i].length == 3
 0 <= isLefti <= 1
 The binary tree described by descriptions is valid.
 */
-
 import java.util.*;
 
-// Definition for a binary tree node
 class TreeNode {
     int val;
     TreeNode left;
@@ -76,30 +74,26 @@ public class CreateBinaryTree {
                 break;
             }
         }
-        
-        // Return the root node
+     
         return map.getOrDefault(root, null);
     }
     
     public static void main(String[] args) {
         CreateBinaryTree treeCreator = new CreateBinaryTree();
-        
-        // Example usage
+
         int[][] descriptions = {
-            {1, 2, 1}, // parent=1, child=2, left child
-            {1, 3, 0}, // parent=1, child=3, right child
-            {2, 4, 1}, // parent=2, child=4, left child
-            {2, 5, 0}  // parent=2, child=5, right child
+            {1, 2, 1}, 
+            {1, 3, 0}, 
+            {2, 4, 1}, 
+            {2, 5, 0} 
         };
         
         TreeNode root = treeCreator.createBinaryTree(descriptions);
         
-        // Print the tree (in-order traversal for simplicity)
         System.out.println("In-order traversal:");
         printInOrder(root);
     }
-    
-    // Helper method to print in-order traversal of the tree
+
     private static void printInOrder(TreeNode node) {
         if (node != null) {
             printInOrder(node.left);
