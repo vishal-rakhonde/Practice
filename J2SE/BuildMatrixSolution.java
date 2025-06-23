@@ -41,7 +41,6 @@ rowConditions[i].length == colConditions[i].length == 2
 abovei != belowi
 lefti != righti
 */
-
 import java.util.*;
 
 public class BuildMatrixSolution {
